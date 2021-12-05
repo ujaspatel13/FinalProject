@@ -19,18 +19,15 @@ import java.util.List;
 
 
 public class CarbonDioxideActivity extends AppCompatActivity {
-    //Declare Variables
     private RecyclerView mRecyclerView;
     private CarbonAdapter.RecyclerViewClickListener listener;
     private CarbonAdapter mCarbonAdapter;
     private ArrayList<CarbonDioxideModel> mCarbonList;
-    private RequestQueue mRequestQueue;
     private ProgressDialog progressDialog;
     SharedPreferences sharedpreferences;
-
     private ProgressDialog pDialog;
     ArrayList<HashMap<String, String>> rssItemList = new ArrayList<>();
-    RSSParser rssParser = new RSSParser();
+    Parser rssParser = new Parser();
     List<CarbonDioxideModel> rssItems = new ArrayList<>();
     //Define XML reading tags
     private static String TAG_TITLE = "title";
@@ -48,12 +45,10 @@ public class CarbonDioxideActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // mRequestQueue = Volley.newRequestQueue(this);
 /**
  * Start Asynce task
  */
         new LoadRSSFeedItems().execute("https://www.carboninterface.com/api/v1/vehicle_makes");
-
         Button btnFav = (Button) findViewById(R.id.btnCarbonFav);
         /**
          * Execude button click listener
@@ -101,7 +96,6 @@ public class CarbonDioxideActivity extends AppCompatActivity {
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put(TAG_TITLE, item.getTitle());
                 map.put(TAG_LINK, item.getURL());
-
                 map.put(TAG_PUB_DATE, item.getPubDate());
                 /**
                  * adding HashList to ArrayList
@@ -110,7 +104,6 @@ public class CarbonDioxideActivity extends AppCompatActivity {
                 mCarbonList.add(new CarbonDioxideModel(item.getTitle(),item.getPubDate(),item.getThumbnail(),item.getURL(),""));
                 setOnClickListner();
             }
-
             /**
              * updating UI from Background Thread
              */
@@ -133,27 +126,17 @@ public class CarbonDioxideActivity extends AppCompatActivity {
         }
     }
 
-
     private void setOnClickListner() {
         listener = new CarbonAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
                 CarbonDioxideModel md = mCarbonList.get(position);
-//                Log.d("MD", "onClick: "+md.getURL());
-//                setContentView(R.layout.activity_soccer_game);
-//                WebView webView = (WebView) findViewById(R.id.webvidedetail);
-//                webView.getSettings().setJavaScriptEnabled(true);
-//
-//                webView.loadUrl(md.getURL());
-
                 Bundle args = new Bundle();
                 args.putString("Title",md.getTitle());
                 args.putString("URL",md.getURL());
                 args.putString("Thumbnail",md.getThumbnail());
                 args.putString("PubDate",md.getPubDate());
                 args.putString("Guid",md.getGuid());
-
-
                 CarbonDetailActivityFragment frg =  new CarbonDetailActivityFragment();
                 frg.setArguments(args);
                 frg.show(getSupportFragmentManager(),"mycarbonfragment");

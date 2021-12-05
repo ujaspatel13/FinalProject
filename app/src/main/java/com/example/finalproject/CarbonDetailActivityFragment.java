@@ -52,7 +52,7 @@ public class CarbonDetailActivityFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-                if (helper.insertSoccerGame(Title,PubDate,Thumbnail,URL,Guid)) {
+                if (helper.insertCarbonDioxide(Title,PubDate,Thumbnail,URL,Guid)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Saved To DB", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(), "NOT Saved", Toast.LENGTH_LONG).show();
