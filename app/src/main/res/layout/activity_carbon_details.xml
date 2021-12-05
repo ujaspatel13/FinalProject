@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CarbonDetailActivityFragment">
+    <TextView
+        android:id="@+id/txt_carbon_dt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/img_carbon_thumbnail"
+        android:text="Title"
+        android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/btnCarbonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_carbon_dt_title"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/save_to_database"
+        android:textColor="#ffff"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnCarbonOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Openinweb"
+        android:layout_below="@id/btnCarbonSave"
+        android:textColor="#ffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+        android:layout_margin="10dp"
+        />
+
+</LinearLayout>
